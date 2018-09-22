@@ -8,7 +8,7 @@ export function renderNotice(message, type) {
 export function renderMessage(user, message) {
 
     const userName = user['display-name'];
-    const userColor = user['color'] || 'inherit';
+    const userColor = user['color'];
 
     const el = document.createElement('p'),
         userEl = document.createElement('span'),
@@ -16,7 +16,9 @@ export function renderMessage(user, message) {
 
     userEl.innerText = userName;
     userEl.classList.add('zen-user');
-    userEl.style['color'] = userColor;
+    if (userColor) {
+        userEl.style['color'] = userColor;
+    }
 
     messageEl.innerText = `: ${message}`;
     messageEl.classList.add('zen-text');
