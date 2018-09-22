@@ -8,13 +8,23 @@ export class Client {
     }
 
     connect(options) {
-        const client = new tmi.client(options);
+        this.client = new tmi.client(options);
 
-        client.on('connected', this.handleConnected.bind(this));
-        client.on('disconnected', this.handleDisconnected.bind(this));
-        client.on('message', this.handleMessage.bind(this));
+        this.client.on('connected', this.handleConnected.bind(this));
+        this.client.on('disconnected', this.handleDisconnected.bind(this));
+        this.client.on('join', this.handleJoin.bind(this));
+        this.client.on('message', this.handleMessage.bind(this));
 
-        client.connect();
+        this.client.connect();
+    }
+
+    disconnect() {
+        this.client.disconnect();
+    }
+
+    moveTo(channel) {
+        this.client.channels.concat().forEach(channel => this.client.leave(channel));
+        this.client.join(channel);
     }
 
     handleConnected(address, port) {
@@ -26,6 +36,13 @@ export class Client {
     handleDisconnected(reason) {
         this.list.append(
             renderNotice(`Disconnected ${reason}`)
+        );
+    }
+
+    handleJoin(channel, username, self) {
+        if (!self) return;
+        this.list.append(
+            renderNotice(`Joined channel ${channel}`)
         );
     }
 

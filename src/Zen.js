@@ -1,13 +1,23 @@
 import { MessageList } from './MessageList';
 import { Client } from './Client';
 
-function Zen(containerId, options) {
+class Zen {
+    constructor(containerId, options) {
+        this.container = setupContainer(containerId, options.theme);
+        this.messageList = new MessageList(this.container, options.messageLimit);
+        this.client = new Client(this.messageList);
 
-    const container = setupContainer(containerId, options.theme);
-    const messageList = new MessageList(container, options.messageLimit);
-    const client = new Client(messageList);
+        this.client.connect(options);
+    }
 
-    client.connect(options);
+    moveTo(channel) {
+        this.client.moveTo(channel);
+    }
+
+    destroy() {
+        this.client.disconnect();
+        this.messageList.clear();
+    }
 }
 
 function setupContainer(containerId, theme) {

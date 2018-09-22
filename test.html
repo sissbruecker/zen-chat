@@ -24,7 +24,8 @@
 <div id="container"></div>
 
 <script type="application/javascript">
-    new Zen('container', {channels: ['bobross'], messageLimit: 10, theme: 'dark'});
+    const zen = new Zen('container', {channels: ['bobross'], messageLimit: 10, theme: 'dark'});
+    setTimeout(() => zen.moveTo('threedogg'), 5000);
 </script>
 </body>
 </html>

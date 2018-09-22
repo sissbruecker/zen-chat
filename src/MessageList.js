@@ -8,6 +8,8 @@ export class MessageList {
         this.pending = [];
 
         this.update = this.update.bind(this);
+
+        this.clear();
     }
 
     append(el) {
