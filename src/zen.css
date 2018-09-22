@@ -1,0 +1,23 @@
+.zen-container {
+    overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    padding: 16px;
+}
+
+.zen-container > p {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+/* Default theme */
+.zen-container {
+    background: #efefef;
+}
+
+.zen-container > .zen-notice {
+    color: #888888;
+}
+
+.zen-container > .zen-message {
+    color: #303030;
+}

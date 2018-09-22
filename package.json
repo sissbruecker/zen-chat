@@ -1,0 +1,20 @@
+{
+  "name": "zen-chat",
+  "version": "0.1.0",
+  "description": "Minimal, performance-driven Twitch chat",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-rollup && npm run build-css",
+    "build-rollup": "rollup src/Zen.js --file ./dist/zen.js --format umd --name Zen",
+    "build-css": "cp ./src/zen.css ./dist/zen.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tmi.js": "^1.2.1"
+  },
+  "devDependencies": {
+    "rollup": "^0.66.2"
+  }
+}
