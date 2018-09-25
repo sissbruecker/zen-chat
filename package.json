@@ -1,11 +1,11 @@
 {
   "name": "zen-chat",
   "version": "0.1.0",
-  "description": "Minimal, performance-driven Twitch chat",
+  "description": "Minimal, performance focused Twitch chat",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build-rollup && npm run build-css",
-    "build-rollup": "rollup src/Zen.js --file ./dist/zen.js --format umd --name Zen",
+    "build": "npm run build-webpack && npm run build-css",
+    "build-webpack": "webpack",
     "build-css": "cp ./src/zen.css ./dist/zen.css"
   },
   "keywords": [],
@@ -15,6 +15,7 @@
     "tmi.js": "^1.2.1"
   },
   "devDependencies": {
-    "rollup": "^0.66.2"
+    "webpack": "^4.20.1",
+    "webpack-cli": "^3.1.1"
   }
 }
