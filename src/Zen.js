@@ -4,7 +4,7 @@ import { Client } from './Client';
 class Zen {
     constructor(containerId, options) {
         this.container = setupContainer(containerId, options.theme);
-        this.messageList = new MessageList(this.container, options.messageLimit);
+        this.messageList = new MessageList(this.container, options.messageLimit, options.debounce);
         this.client = new Client(this.messageList);
 
         this.client.connect(options);
