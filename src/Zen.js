@@ -14,6 +14,10 @@ class Zen {
         this.client.moveTo(channel);
     }
 
+    leave() {
+        this.client.leaveAll();
+    }
+
     destroy() {
         this.client.disconnect();
         this.messageList.clear();

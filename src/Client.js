@@ -5,6 +5,8 @@ export class Client {
 
     constructor(list) {
         this.list = list;
+        this.connected = false;
+        this.initialChannel = null;
     }
 
     connect(options) {
@@ -23,14 +25,30 @@ export class Client {
     }
 
     moveTo(channel) {
-        this.client.channels.concat().forEach(channel => this.client.leave(channel));
+
+        // Can only join channels after connecting, so store channel and join later
+        if (!this.connected) {
+            this.initialChannel = channel;
+            return;
+        }
+
+        this.leaveAll();
         this.client.join(channel);
     }
 
+    leaveAll() {
+        this.client.channels.concat().forEach(channel => this.client.leave(channel));
+    }
+
     handleConnected(address, port) {
+        this.connected = true;
         this.list.append(
             renderNotice(`Connected to ${address}:${port}`)
         );
+        if (this.initialChannel) {
+            this.moveTo(this.initialChannel);
+            this.initialChannel = null;
+        }
     }
 
     handleDisconnected(reason) {
